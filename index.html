@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<title>Invito Matrimonio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,500&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  width: 100%;
+  min-height: 100vh;
+  overflow-y: auto;
+  font-family: 'Playfair Display', serif;
+  background: url("./prova3/5.png") no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* INTRO */
+#intro {
+  position: relative; 
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+#seal {
+  width: 150px;
+  cursor: pointer;
+  z-index: 5;
+  transition: opacity 1s ease;
+}
+
+/* VIDEO */
+#videoContainer {
+  width: 100%;
+  background: black;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1.5s ease;
+  z-index: 90;
+}
+
+#videoContainer.active { 
+  opacity: 1; 
+  pointer-events: auto; 
+}
+
+video { 
+  width: 100%; 
+  height: auto; 
+  object-fit: contain; 
+}
+
+/* CONTENUTO */
+#finalScreen {
+  position: relative;
+  padding: 20px 0 100px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 1.5s ease;
+}
+
+/* GIF PRINCIPALE */
+#secondGIF {
+  width: 360px;
+  max-width: 90vw;
+  margin-top: 25px;
+  filter: drop-shadow(0 10px 25px rgba(0,0,0,0.35));
+}
+
+/* TITOLO DETTAGLI */
+#eventDetailsTitle {
+  margin-top: 20px;
+  text-align: center;
+  font-family: 'Great Vibes', cursive;
+  font-size: 32px;
+  color: #ffffff;
+}
+
+/* EVENTI */
+#eventGifs {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 520px;
+}
+
+.eventGifBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#crazyGIF { width: 240px; max-width: 45vw; }
+#crayGIF { width: 160px; max-width: 40vw; }
+
+.gifCaption {
+  margin-top: 10px;
+  font-family: 'Great Vibes', cursive;
+  font-size: 22px;
+  color: #ffffff;
+  text-align: center;
+}
+
+.ceremonyDetails, .receptionDetails {
+  margin-top: 5px;
+  font-family: Calibri, sans-serif;
+  color: white;
+  text-align: center;
+}
+
+.ceremonyDetails .time { font-size: 18px; }
+.ceremonyDetails .place { font-weight: bold; font-size: 18px; }
+.ceremonyDetails .city { font-size: 16px; }
+
+.receptionDetails .venue { font-weight: bold; font-size: 18px; }
+.receptionDetails .address { font-size: 16px; }
+
+/* ========================= */
+/* FAQ TRASPARENTE ELEGANTE */
+/* ========================= */
+
+.faqBox {
+  margin-top: 70px;
+  width: 90%;
+  max-width: 700px;
+}
+
+/* RETTANGOLINI */
+.faqItem {
+  margin-bottom: 18px;
+  padding: 20px 25px;
+
+  background: rgba(255, 255, 255, 0.05); /* SUPER trasparente */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+
+  color: white;
+  transition: all 0.3s ease;
+}
+
+/* Hover delicato */
+.faqItem:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* DOMANDA */
+.faqQuestion {
+  font-weight: bold;
+  font-size: 18px;
+  cursor: pointer;
+  position: relative;
+}
+
+/* Simbolo + */
+.faqQuestion::after {
+  content: "+";
+  position: absolute;
+  right: 0;
+  font-size: 20px;
+  transition: transform 0.3s ease;
+}
+
+/* Quando aperto */
+.faqItem.active .faqQuestion::after {
+  content: "−";
+}
+
+/* RISPOSTA */
+.faqAnswer {
+  margin-top: 12px;
+  font-size: 16px;
+  line-height: 1.5;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
+  opacity: 0;
+}
+
+.faqItem.active .faqAnswer {
+  max-height: 200px;
+  opacity: 1;
+}
+</style>
+</head>
+
+<body>
+
+<!-- INTRO -->
+<div id="intro">
+  <img id="seal" src="prova3/sigillo.png" alt="Sigillo">
+</div>
+
+<!-- VIDEO -->
+<div id="videoContainer">
+  <video id="myVideo" muted playsinline>
+    <source src="prova3/prova2.mp4" type="video/mp4">
+  </video>
+</div>
+
+<!-- CONTENUTO -->
+<div id="finalScreen">
+  <div id="invitationText">
+
+    <p style="font-family:'Great Vibes', cursive; font-size:34px; color:#f4f1e8; text-align:center;">
+      Con emozione e gioia vi invitiamo al nostro matrimonio
+    </p>
+
+    <img id="secondGIF" src="prova3/be.gif" alt="GIF Be">
+
+    <div id="eventDetailsTitle">Dettagli evento</div>
+
+    <div id="eventGifs">
+
+      <div class="eventGifBlock">
+        <img id="crazyGIF" src="prova3/crazy.gif" alt="GIF Crazy">
+        <div class="gifCaption">Cerimonia religiosa</div>
+        <div class="ceremonyDetails">
+          <div class="time">Ore: 16:30</div>
+          <div class="place">Chiesa di San Matteo</div>
+          <div class="city">Lecce</div>
+        </div>
+      </div>
+
+      <div class="eventGifBlock">
+        <img id="crayGIF" src="prova3/cray.gif" alt="GIF Cray">
+        <div class="gifCaption">Ricevimento</div>
+        <div class="receptionDetails">
+          <div class="venue">Villa Zaira</div>
+          <div class="address">Via Giosuè Carducci, 90, Maglie</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- FAQ -->
+    <div class="faqBox">
+
+      <div class="faqItem">
+        <div class="faqQuestion">Come confermo la presenza?</div>
+        <div class="faqAnswer">
+          Potete confermare entro il 30 Giugno tramite WhatsApp o chiamata.
+        </div>
+      </div>
+
+      <div class="faqItem">
+        <div class="faqQuestion">C'è un dress code?</div>
+        <div class="faqAnswer">
+          Elegante. I colori chiari e pastello sono benvenuti ✨
+        </div>
+      </div>
+
+      <div class="faqItem">
+        <div class="faqQuestion">È disponibile parcheggio?</div>
+        <div class="faqAnswer">
+          Sì, la villa dispone di ampio parcheggio gratuito.
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<script>
+const seal = document.getElementById("seal");
+const video = document.getElementById("myVideo");
+const videoContainer = document.getElementById("videoContainer");
+const finalScreen = document.getElementById("finalScreen");
+
+/* SIGILLO → VIDEO */
+seal.onclick = () => {
+  seal.style.opacity = "0";
+  setTimeout(() => {
+    videoContainer.classList.add("active");
+    video.play();
+  }, 800);
+};
+
+/* VIDEO → CONTENUTO */
+video.onended = () => {
+  videoContainer.style.display = "none";
+  finalScreen.style.opacity = "1";
+};
+
+/* FAQ TOGGLE */
+const faqItems = document.querySelectorAll(".faqItem");
+
+faqItems.forEach(item => {
+  item.querySelector(".faqQuestion").addEventListener("click", () => {
+    item.classList.toggle("active");
+  });
+});
+</script>
+
+</body>
+</html>
